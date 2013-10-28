@@ -16,3 +16,4 @@ def primeChecker(n):
 def primeCheckList(d,e):
     for i in range(d,e + 1,1):
         print primeChecker(i)
+ 
