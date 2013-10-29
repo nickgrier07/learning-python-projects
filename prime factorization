@@ -1,0 +1,37 @@
+def isPrime(x):
+    if x <= 1 or isinstance(x,float):
+        return False
+    else:
+        for divisor in range(2,x,1):
+            if x % divisor == 0:
+                return False
+        return True
+
+def allPrimeFactors(y):
+    primeFactors = []
+    restart = True
+    while restart: #restarts the for loop at the first iterable value
+        restart = False
+        for i in range(2,y,1):
+            if y % i == 0 and isPrime(i):
+                primeFactors.append(i)
+                y = y / i
+                if isPrime(y) and y == i:
+                   primeFactors.append(y)
+                else:
+                   pass
+                restart = True
+            else:
+                pass
+
+    primeFactors.sort()
+    return primeFactors
+
+def primeFactorsTester(d,e):
+    for f in range(d,e+1,1):
+        if f == 1:
+            print "1 is undefined"
+        elif isPrime(f):
+            print str(f) + " is prime"
+        else:
+            print "the prime factors of " + str(f) + " are "+ str(allPrimeFactors(f))
