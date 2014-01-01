@@ -1,0 +1,66 @@
+def isPrime(x): # core function
+    if x <= 1 or isinstance(x,float):
+        return False
+    else:
+        for divisor in range(2,x,1):
+            if x % divisor == 0:
+                return False
+        return True
+
+def primeChecker(n):
+    if isPrime(n):
+        return "%d is prime" % n
+    else:
+        return "%d is not prime" % n
+
+def primeCheckList(d,e):
+    for i in range(d,e + 1,1):
+        print primeChecker(i)
+    
+def primeWriteList(d,e):
+    k = []
+    for i in range(d,e + 1,1):
+        k.append(primeChecker(i))
+    return k
+
+def primeTxtWrite(d,e,f='primetext.txt'): #argument 3 must be a string
+    writer = open(f, 'w')
+    w = primeWriteList(d,e)
+    for i in w:
+        writer.write(str(i)+'\n')
+    writer.close()
+
+def allPrimeFactors(y): # core function
+    factors = []
+    for i in range(2,y):
+        while y % i == 0:
+            factors.append(i)
+            y = y / i
+    return factors
+
+def primeFactorsTester(y):
+    if y == 1:
+        return "1 is undefined"
+    elif isPrime(y):
+        return str(y) + " is prime"
+    else:
+        p = allPrimeFactors(y)
+        return "the prime factors of " + str(y) + " are "+ str(p)
+
+def listOfPrimes(d,e):
+    for i in range(d,e+1,1):
+        return primeFactorsTester(i)
+
+
+def factorsWriteList(d,e):
+    k = []
+    for i in range(d,e + 1,1):
+        k.append(primeFactorsTester(i))
+    return k
+
+def factorsTxtWrite(d,e,f='factorstext.txt'): #argument 3 must be a string
+    writer = open(f, 'w')
+    w = factorsWriteList(d,e)
+    for i in w:
+        writer.write(str(i)+'\n')
+    writer.close()
