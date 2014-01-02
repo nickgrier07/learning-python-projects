@@ -1,36 +1,36 @@
-def isPrime(x): # core function
-    if x <= 1 or isinstance(x,float):
-        return False
+def isPrime(x):                       #this function checks whether a number is prime
+    if x <= 1 or isinstance(x,float): #and returns a value of True if it is, and
+        return False                  #false if it is not
     else:
         for divisor in range(2,x,1):
             if x % divisor == 0:
                 return False
         return True
 
-def primeChecker(n):
+def primeChecker(n):                  #outputs human readable string values for prime numbers
     if isPrime(n):
         return "%d is prime" % n
     else:
         return "%d is not prime" % n
 
-def primeCheckList(d,e):
-    for i in range(d,e + 1,1):
+def primeCheckList(d,e):              #a void loop funtion that outputs a human readable
+    for i in range(d,e + 1,1):        #list'not an array' of string values for prime numbers
         print primeChecker(i)
     
-def primeWriteList(d,e):
-    k = []
+def primeWriteList(d,e):              #outputs a list of human readable string values for
+    k = []                            #prime numbers
     for i in range(d,e + 1,1):
         k.append(primeChecker(i))
     return k
 
-def primeTxtWrite(d,e,f='primetext.txt'): #argument 3 must be a string
+def primeTxtWrite(d,e,f='primetext.txt'): 
     writer = open(f, 'w')
-    w = primeWriteList(d,e)
-    for i in w:
-        writer.write(str(i)+'\n')
+    w = primeWriteList(d,e)           #writes a list of human readable string values for
+    for i in w:                       #prime numbers to a text file, with the name of 
+        writer.write(str(i)+'\n')     #the file input to the third argument
     writer.close()
 
-def allPrimeFactors(y): # core function
+def allPrimeFactors(y):               #outputs a list of prime factors for a given number
     factors = []
     for i in range(2,y):
         while y % i == 0:
@@ -38,29 +38,31 @@ def allPrimeFactors(y): # core function
             y = y / i
     return factors
 
-def primeFactorsTester(y):
-    if y == 1:
-        return "1 is undefined"
-    elif isPrime(y):
+def primeFactorsTester(y):            #outputs a string value of the prime factors of a number
+    if y == 1:                        #if the number is prime, outputs 'is prime'
+        return "1 is undefined"       #if the number is negative, outputs 'can not be factored'
+    elif isPrime(y):                  #if the number is one, outputs ' 1 is undefined'
         return str(y) + " is prime"
+    elif y < 0:
+        return str(y) + " can not be factored"
     else:
         p = allPrimeFactors(y)
         return "the prime factors of " + str(y) + " are "+ str(p)
 
-def listOfPrimes(d,e):
-    for i in range(d,e+1,1):
-        return primeFactorsTester(i)
+def listOfPrimes(d,e):                #a void loop funtion that outputs a human readable
+    for i in range(d,e+1,1):          #list'not an array' of string values for each 
+        print primeFactorsTester(i)   #iteration's prime factors
 
 
-def factorsWriteList(d,e):
-    k = []
+def factorsWriteList(d,e):            #outputs a list of human readable string values for
+    k = []                            #prime factors of a given number
     for i in range(d,e + 1,1):
         k.append(primeFactorsTester(i))
     return k
 
-def factorsTxtWrite(d,e,f='factorstext.txt'): #argument 3 must be a string
+def factorsTxtWrite(d,e,f='factorstext.txt'): 
     writer = open(f, 'w')
-    w = factorsWriteList(d,e)
-    for i in w:
-        writer.write(str(i)+'\n')
+    w = factorsWriteList(d,e)         #writes a list of human readable string values for
+    for i in w:                       #prime factors of a given number to a text file,
+        writer.write(str(i)+'\n')     #with the name of the file input to the third argument
     writer.close()
